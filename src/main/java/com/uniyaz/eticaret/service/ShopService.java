@@ -13,6 +13,7 @@ import java.util.Optional;
 
 @Service
 public class ShopService {
+
     @Autowired
     ShopUserDao shopUserDao;
 
@@ -56,7 +57,5 @@ public class ShopService {
         return shopUserDaoById;
     }
 
-    public void amountOption(int amount) {
-        //shopUserDao.amountOption(amount);
-    }
+
 }

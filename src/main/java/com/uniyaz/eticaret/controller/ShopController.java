@@ -52,13 +52,6 @@ public class ShopController {
         return status;
     }
 
-    @PostMapping(path="/amount/{amount}")
-    public ResponseEntity amountOption(@PathVariable int amount){
-
-        shopService.amountOption(amount);
-        return null;
-    }
-
 
 
 

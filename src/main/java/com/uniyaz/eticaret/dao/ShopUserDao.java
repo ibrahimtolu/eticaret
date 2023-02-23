@@ -18,7 +18,7 @@ public interface ShopUserDao extends JpaRepository<ShopUser, Long> {
     List<ShopUser> findAllShopUserById(@Param("userId") Long userId);
 
     @Query("select shopUser from ShopUser shopUser " +
-            "left join shopUser.product product where shopUser.shopUserId=:id")
+            "left join shopUser.product product where shopUser.id=:id")
     ShopUser findByShopUserId(@Param("id") Long id);
 
 

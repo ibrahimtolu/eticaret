@@ -11,7 +11,7 @@ public class ShopUser extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long shopUserId;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "productId")
@@ -33,11 +33,11 @@ public class ShopUser extends BaseEntity {
 
     @Override
     public Long getId() {
-        return shopUserId;
+        return id;
     }
 
     public void setShopUserId(Long shopUserId) {
-        this.shopUserId = shopUserId;
+        this.id = shopUserId;
     }
 
     public void setProduct(Products product) {
