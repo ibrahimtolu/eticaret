@@ -1,6 +1,6 @@
 package com.uniyaz.eticaret.service;
 
-import com.uniyaz.eticaret.dao.BuyDao;
+import com.uniyaz.eticaret.repo.BuyRepo;
 import com.uniyaz.eticaret.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 public class BuyService {
 
     @Autowired
-    BuyDao buyDao;
+    BuyRepo buyRepo;
 
     static int i=0;
     BuyService(){
@@ -22,7 +22,7 @@ public class BuyService {
         Buy buy=new Buy();
         buy.setShopUser(shopUser);
         buy.setBuyID(new Long(i));
-        Buy savedBuy = buyDao.save(buy);
+        Buy savedBuy = buyRepo.save(buy);
         return savedBuy;
     }
 

@@ -5,6 +5,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 public class Comment extends BaseEntity {
@@ -22,7 +23,18 @@ public class Comment extends BaseEntity {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private User user;
 
-    private Long childID;
+
+    private Long parentID;
+
+    @ManyToOne
+    @JoinColumn(name = "id")
+    @org.hibernate.annotations.ForeignKey(name = "fk_comment_products")
+    @Cascade(org.hibernate.annotations.CascadeType.MERGE)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private Products products;
+
+    @Column(nullable = false, columnDefinition = "int default 1")
+    private int likeAmount;
 
 
     @Override
@@ -50,11 +62,52 @@ public class Comment extends BaseEntity {
         this.user = user;
     }
 
-    public Long getChildID() {
-        return childID;
+
+    public Long getParentID() {
+        return parentID;
     }
 
-    public void setChildID(Long childID) {
-        this.childID = childID;
+    public void setParentID(Long parentID) {
+        this.parentID = parentID;
+    }
+
+    public Products getProducts() {
+        return products;
+    }
+
+    public void setProducts(Products products) {
+        this.products = products;
+    }
+
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "commentId=" + commentId +
+                ", comment='" + comment + '\'' +
+                ", user=" + user.toString() +
+                ", parentID=" + parentID +
+                ", products=" + products.toString() +
+                '}';
+    }
+
+    public int getLikeAmount() {
+        return likeAmount;
+    }
+
+    public void setLikeAmount(int likeAmount) {
+        this.likeAmount = likeAmount;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Comment comment = (Comment) o;
+        return commentId.equals(comment.commentId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash( commentId);
     }
 }

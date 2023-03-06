@@ -9,18 +9,9 @@ public abstract class BaseEntity implements Serializable {
 
 
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
 
-        BaseEntity that = (BaseEntity) o;
+    public abstract boolean equals(Object o);
 
-        return getId() != null ? getId().equals(that.getId()) : that.getId() == null;
-    }
 
-    @Override
-    public int hashCode() {
-        return getId() != null ? getId().hashCode() : 0;
-    }
+    public abstract int hashCode();
 }

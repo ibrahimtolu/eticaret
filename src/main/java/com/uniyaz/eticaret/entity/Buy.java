@@ -5,6 +5,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 public class Buy extends BaseEntity {
@@ -36,5 +37,19 @@ public class Buy extends BaseEntity {
 
     public void setShopUser(ShopUser shopUser) {
         this.shopUser = shopUser;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Buy buy = (Buy) o;
+        return Objects.equals(buyID, buy.buyID);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(  buyID);
     }
 }

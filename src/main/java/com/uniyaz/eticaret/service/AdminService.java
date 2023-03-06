@@ -1,6 +1,6 @@
 package com.uniyaz.eticaret.service;
 
-import com.uniyaz.eticaret.dao.ProductsDao;
+import com.uniyaz.eticaret.repo.ProductsRepo;
 import com.uniyaz.eticaret.entity.Products;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,9 +9,9 @@ import org.springframework.stereotype.Service;
 public class AdminService {
 
     @Autowired
-    ProductsDao productsDao;
+    ProductsRepo productsRepo;
     public Products addProduct(Products product){
 
-        return productsDao.save(product);
+        return productsRepo.save(product);
 }
 }

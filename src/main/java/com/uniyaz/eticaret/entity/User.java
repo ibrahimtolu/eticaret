@@ -1,9 +1,10 @@
 package com.uniyaz.eticaret.entity;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
-public class User {
+public class User extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
@@ -16,9 +17,6 @@ public class User {
     @org.hibernate.annotations.ForeignKey(name = "fk_lessonteacher_lesson")
      private UserType userType;
 
-    public Long getUserId() {
-        return userId;
-    }
 
     public void setUserId(Long userId) {
         this.userId = userId;
@@ -63,5 +61,24 @@ public class User {
                 ", userName='" + userName + '\'' +
                 ", userPassword='" + userPassword + '\'' +
                 ", active=" + active ;
+    }
+
+    @Override
+    public Long getId() {
+        return userId;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(userId, user.userId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash( userId);
     }
 }

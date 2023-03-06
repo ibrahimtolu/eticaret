@@ -3,7 +3,7 @@ package com.uniyaz.eticaret.controller;
 
 import com.uniyaz.eticaret.entity.Products;
 import com.uniyaz.eticaret.entity.ShopUser;
-import com.uniyaz.eticaret.service.ShopService;
+import com.uniyaz.eticaret.service.ShopUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,10 +14,10 @@ import java.util.List;
 @RestController
 @RequestMapping(path = "/shop")
 @CrossOrigin(origins = "*")
-public class ShopController {
+public class ShopUserController {
 
     @Autowired
-    ShopService shopService;
+    ShopUserService shopService;
 
     @GetMapping(path = "/getAll/{id}")
     public ResponseEntity getAllShopUserById(@PathVariable  Long id){
@@ -43,13 +43,30 @@ public class ShopController {
 
         return responseEntity;
     }
+    @PostMapping(path = "/save/shopuser")
+    public ResponseEntity saveShopAmount(@RequestBody ShopUser shopUser){
+
+
+        shopService.save(shopUser);
+
+
+        ResponseEntity responseEntity=new ResponseEntity(HttpStatus.ACCEPTED);
+
+        return responseEntity;
+    }
 
     @DeleteMapping(path = "/delete/{id}")
     public  boolean deleteProduct(@PathVariable Long id){
 
         boolean status = shopService.deleteShopProduct(id);
-
         return status;
+
+    }
+    @PostMapping(path = "/amount")
+    public ResponseEntity updateAmountByShopUserId(@RequestBody ShopUser shopUser){
+        System.out.println(shopUser);
+       shopService.updateAmountByShopUserId(shopUser);
+        return new ResponseEntity(HttpStatus.ACCEPTED);
     }
 
 

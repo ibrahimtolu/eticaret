@@ -1,6 +1,6 @@
 package com.uniyaz.eticaret.service;
 
-import com.uniyaz.eticaret.dao.ShopUserDao;
+import com.uniyaz.eticaret.repo.ShopUserRepo;
 import com.uniyaz.eticaret.entity.Products;
 import com.uniyaz.eticaret.entity.ShopUser;
 import com.uniyaz.eticaret.entity.User;
@@ -12,13 +12,13 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ShopService {
+public class ShopUserService {
 
     @Autowired
-    ShopUserDao shopUserDao;
+    ShopUserRepo shopUserRepo;
 
     public List<ShopUser> findAllShopUserById(Long id) {
-        List<ShopUser> allShopUser = shopUserDao.findAllShopUserById(id);
+        List<ShopUser> allShopUser = shopUserRepo.findAllShopUserById(id);
         return allShopUser;
     }
 
@@ -36,13 +36,13 @@ public class ShopService {
         shopUser.setProduct(products);
         shopUser.setUser(user);
 
-        shopUserDao.save(shopUser);
+        shopUserRepo.save(shopUser);
 
     }
 
 
     public boolean deleteShopProduct(Long shopUserId){
-        shopUserDao.deleteById(shopUserId);
+        shopUserRepo.deleteById(shopUserId);
 
         Optional<ShopUser> byShopUserId = findByShopUserId(shopUserId);
 
@@ -53,9 +53,17 @@ public class ShopService {
     }
 
     public Optional<ShopUser> findByShopUserId(Long id){
-        Optional<ShopUser> shopUserDaoById = shopUserDao.findById(id);
+        Optional<ShopUser> shopUserDaoById = shopUserRepo.findById(id);
         return shopUserDaoById;
     }
 
+    public void updateAmountByShopUserId(ShopUser shopUser){
+        shopUserRepo.save(shopUser);
 
+    }
+
+
+    public void save(ShopUser shopUser) {
+        shopUserRepo.save(shopUser);
+    }
 }

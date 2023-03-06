@@ -1,8 +1,7 @@
 package com.uniyaz.eticaret.service;
 
 import com.uniyaz.eticaret.converter.UserConverter;
-import com.uniyaz.eticaret.dao.UserDao;
-import com.uniyaz.eticaret.entity.User;
+import com.uniyaz.eticaret.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,10 +11,10 @@ import java.util.Optional;
 public class LoginControlService {
 
     @Autowired
-    UserDao userDao;
+    UserRepo userRepo;
 
     public Optional<UserConverter> findUser(String userName,String userPassword){
-        Optional<UserConverter> getUser = userDao.findByUserNameAndUserPassword(userName,userPassword);
+        Optional<UserConverter> getUser = userRepo.findByUserNameAndUserPassword(userName,userPassword);
         return getUser;
     }
 }
