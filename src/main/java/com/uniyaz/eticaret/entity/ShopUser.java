@@ -12,7 +12,7 @@ public class ShopUser extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long shopUserId;
 
     @ManyToOne
     @JoinColumn(name = "productId")
@@ -34,7 +34,7 @@ public class ShopUser extends BaseEntity {
 
     @Override
     public Long getId() {
-        return id;
+        return shopUserId;
     }
 
     @Override
@@ -42,16 +42,16 @@ public class ShopUser extends BaseEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ShopUser shopUser = (ShopUser) o;
-        return Objects.equals(id, shopUser.id);
+        return Objects.equals(shopUserId, shopUser.shopUserId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash( id);
+        return Objects.hash(shopUserId);
     }
 
     public void setShopUserId(Long shopUserId) {
-        this.id = shopUserId;
+        this.shopUserId = shopUserId;
     }
 
     public void setProduct(Products product) {

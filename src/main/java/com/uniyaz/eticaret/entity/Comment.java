@@ -37,6 +37,7 @@ public class Comment extends BaseEntity {
     private int likeAmount;
 
 
+
     @Override
     public Long getId() {
         return commentId;

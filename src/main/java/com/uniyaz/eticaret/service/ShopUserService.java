@@ -1,10 +1,7 @@
 package com.uniyaz.eticaret.service;
 
 import com.uniyaz.eticaret.repo.ShopUserRepo;
-import com.uniyaz.eticaret.entity.Products;
 import com.uniyaz.eticaret.entity.ShopUser;
-import com.uniyaz.eticaret.entity.User;
-import com.uniyaz.eticaret.entity.UserType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,22 +16,12 @@ public class ShopUserService {
 
     public List<ShopUser> findAllShopUserById(Long id) {
         List<ShopUser> allShopUser = shopUserRepo.findAllShopUserById(id);
+
         return allShopUser;
     }
 
-    public void saveShopProduct(Products products){
+    public void saveShopProduct(ShopUser shopUser){
 
-        UserType userType=new UserType();
-        userType.setUserTypeId(1L);
-
-        User user=new User();
-        user.setUserId(1L);
-        user.setUserTypeId(userType);
-
-        ShopUser shopUser=new ShopUser();
-
-        shopUser.setProduct(products);
-        shopUser.setUser(user);
 
         shopUserRepo.save(shopUser);
 
@@ -58,7 +45,10 @@ public class ShopUserService {
     }
 
     public void updateAmountByShopUserId(ShopUser shopUser){
-        shopUserRepo.save(shopUser);
+        ShopUser savedShopUser=new ShopUser();
+        savedShopUser.setShopUserId(shopUser.getId());
+        savedShopUser.setShopAmount(shopUser.getShopAmount());
+        shopUserRepo.save(savedShopUser);
 
     }
 

@@ -26,10 +26,14 @@ public class CommentController {
 
     @PostMapping(path = "/save")
     ResponseEntity saveComment(@RequestBody Comment comment){
+        boolean status = commentService.saveComment(comment);
+        System.out.printf("adasd", comment);
+
+        if(status)
+            return new ResponseEntity(status,HttpStatus.ACCEPTED);
 
 
-
-        return null;
+        return new ResponseEntity(status,HttpStatus.BAD_REQUEST);
     }
     @GetMapping(path = "/getComment/{id}")
     ResponseEntity getCommentFindByProductId(@PathVariable Long id){

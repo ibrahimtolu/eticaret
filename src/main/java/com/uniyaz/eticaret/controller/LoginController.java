@@ -20,8 +20,10 @@ public class LoginController {
     LoginControlService loginControlService;
 
 
-    @PostMapping(path = "")
+    @PostMapping(path = "/control/")
     ResponseEntity loginControl(@RequestBody User user){
+
+        System.out.printf("user",user);
 
 
         String userName = user.getUserName();
@@ -35,7 +37,7 @@ public class LoginController {
             ResponseEntity responseEntity=new ResponseEntity(reUser,HttpStatus.ACCEPTED);
         return responseEntity;
         }
-        ResponseEntity responseEntity=new ResponseEntity(false,HttpStatus.BAD_REQUEST);
+        ResponseEntity responseEntity=new ResponseEntity(false,HttpStatus.BAD_GATEWAY);
         return  responseEntity;
     }
 }

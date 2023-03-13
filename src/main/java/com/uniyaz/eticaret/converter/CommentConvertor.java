@@ -1,13 +1,17 @@
 package com.uniyaz.eticaret.converter;
 
+import com.uniyaz.eticaret.entity.User;
+
 public interface CommentConvertor {
-    Long getId();
+    Long getCommentId();
 
-    String getComments();
+    String getComment();
 
-    Long  getParentID();
+    Long getParentID();
 
 
     String getUserName();
+
+    String getUserId();
 
 }

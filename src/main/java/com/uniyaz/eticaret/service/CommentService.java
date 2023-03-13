@@ -15,10 +15,18 @@ public class CommentService {
     @Autowired
     CommentRepo commentRepo;
 
-    public Optional<List<CommentConvertor>> getAllCommentsByProductId(Long productId){
+    public  Optional<List<CommentConvertor> > getAllCommentsByProductId(Long productId){
 
-        Optional<List<CommentConvertor>> allCommentById = commentRepo.getAllCommentsByProductId(productId);
-        return allCommentById;
+        Optional<List<CommentConvertor>> allCommentsByProductId = commentRepo.getAllCommentsByProductId(productId);
+
+        return allCommentsByProductId;
     }
 
+    public boolean saveComment(Comment comment) {
+        Comment saveComment = commentRepo.save(comment);
+
+        Optional<Comment> byId = commentRepo.findById(saveComment.getId());
+        if (byId.isPresent()) return true;
+        return false;
+    }
 }

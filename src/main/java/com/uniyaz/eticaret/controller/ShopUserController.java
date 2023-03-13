@@ -35,19 +35,21 @@ public class ShopUserController {
     }
 
     @PostMapping(path = "/save")
-    public ResponseEntity saveShopUser(@RequestBody Products products){
+    public ResponseEntity saveShopUser(@RequestBody ShopUser shopUser){
 
-        shopService.saveShopProduct(products);
+
+        shopService.saveShopProduct(shopUser);
 
         ResponseEntity responseEntity=new ResponseEntity(HttpStatus.ACCEPTED);
 
         return responseEntity;
     }
-    @PostMapping(path = "/save/shopuser")
+    @PutMapping(path = "/save/shopuser")
     public ResponseEntity saveShopAmount(@RequestBody ShopUser shopUser){
 
 
-        shopService.save(shopUser);
+        System.out.println(shopUser);
+        shopService.updateAmountByShopUserId(shopUser);
 
 
         ResponseEntity responseEntity=new ResponseEntity(HttpStatus.ACCEPTED);
@@ -62,10 +64,16 @@ public class ShopUserController {
         return status;
 
     }
-    @PostMapping(path = "/amount")
+//    @PostMapping(path = "/amount")
+//    public ResponseEntity updateAmountByShopUserId(@RequestBody ShopUser shopUser){
+//        System.out.println(shopUser);
+//       shopService.updateAmountByShopUserId(shopUser);
+//        return new ResponseEntity(HttpStatus.ACCEPTED);
+//    }
+    @PutMapping(path = "/amount")
     public ResponseEntity updateAmountByShopUserId(@RequestBody ShopUser shopUser){
         System.out.println(shopUser);
-       shopService.updateAmountByShopUserId(shopUser);
+        shopService.updateAmountByShopUserId(shopUser);
         return new ResponseEntity(HttpStatus.ACCEPTED);
     }
 

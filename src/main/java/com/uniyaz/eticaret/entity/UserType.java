@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import java.util.Objects;
 
 @Entity
-public class UserType extends BaseEntity{
+public class UserType extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userTypeId;
@@ -26,17 +26,18 @@ public class UserType extends BaseEntity{
         this.userTypeName = userTypeName;
     }
 
-    @Override
-    public String toString() {
-        return "UserType{" +
-                "userTypeId=" + userTypeId +
-                ", userTypeName='" + userTypeName + '\'' +
-                '}';
-    }
 
     @Override
     public Long getId() {
         return userTypeId;
+    }
+
+    @Override
+    public String toString() {
+        return "UserType{" +
+                "userTypeId=" + userTypeId +
+                ", userTypeName='" + userTypeName.toString() + '\'' +
+                '}';
     }
 
     @Override
