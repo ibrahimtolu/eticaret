@@ -1,10 +1,10 @@
 package com.uniyaz.eticaret.entity;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import java.util.Objects;
 
 @Entity
@@ -15,11 +15,11 @@ public class Products extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private String  description;
+    private String description;
     private String image;
     private Double price;
     private String category;
-    private int amount;
+
     private int stock;
 
 
@@ -72,13 +72,6 @@ public class Products extends BaseEntity {
         this.category = category;
     }
 
-    public int getAmount() {
-        return amount;
-    }
-
-    public void setAmount(int amount) {
-        this.amount = amount;
-    }
 
     public int getStock() {
         return stock;
@@ -98,7 +91,6 @@ public class Products extends BaseEntity {
                 ", image='" + image + '\'' +
                 ", price=" + price +
                 ", category='" + category + '\'' +
-                ", amount=" + amount +
                 ", stock=" + stock +
                 '}';
     }
@@ -113,6 +105,6 @@ public class Products extends BaseEntity {
 
     @Override
     public int hashCode() {
-        return Objects.hash( id);
+        return Objects.hash(id);
     }
 }

@@ -1,20 +1,14 @@
 package com.uniyaz.eticaret.controller;
 
-import com.uniyaz.eticaret.converter.UserConverter;
 import com.uniyaz.eticaret.entity.Buy;
-import com.uniyaz.eticaret.entity.ShopUser;
-import com.uniyaz.eticaret.entity.User;
 import com.uniyaz.eticaret.service.BuyService;
-import com.uniyaz.eticaret.service.LoginControlService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
-
 @RestController
-@RequestMapping(path = "/buy")
+@RequestMapping(path = "/auth/buy")
 @CrossOrigin(origins = "*")
 public class BuyController {
 
@@ -22,10 +16,10 @@ public class BuyController {
     BuyService buyService;
 
 
-    @PostMapping(path = "/saveBuy")
-    ResponseEntity loginControl(@RequestBody ShopUser shopUser) {
-        System.out.println(shopUser);
-        Buy buy = buyService.saveBuyList(shopUser);
+    @PostMapping(path = "/save")
+    ResponseEntity loginControl(@RequestBody Buy buy) {
+
+          buy = buyService.saveBuyList(buy);
         if (buy == null) {
             ResponseEntity responseEntity = new ResponseEntity(buy, HttpStatus.BAD_REQUEST);
             return responseEntity;

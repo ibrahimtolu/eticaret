@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/products")
+@RequestMapping(path = "/auth/products")
 @CrossOrigin(origins = "*")
 public class ProductsController {
 
@@ -24,9 +24,8 @@ public class ProductsController {
 
     @GetMapping(path = "/getAll")
     public ResponseEntity getAllProducts(){
-        System.out.println("gelall geldi");
-        List<Products> allProducts = productService.findAllProducts();
 
+        List<Products> allProducts = productService.findAllProducts();
         if (allProducts.isEmpty()){
             ResponseEntity responseEntity=new ResponseEntity(allProducts,HttpStatus.BAD_REQUEST);
             return  responseEntity;
@@ -42,7 +41,8 @@ public class ProductsController {
     public  Products updateProduct(@RequestBody Products product){
 
 
-        adminService.addProduct(product);
+
+        product = adminService.addProduct(product);
 
 
         return product;

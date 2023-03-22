@@ -4,7 +4,7 @@ import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.Objects;
 
 @Entity
@@ -19,7 +19,7 @@ public class Comment extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "userId")
     @org.hibernate.annotations.ForeignKey(name = "fk_comment_user")
-    @Cascade(org.hibernate.annotations.CascadeType.MERGE)
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private User user;
 

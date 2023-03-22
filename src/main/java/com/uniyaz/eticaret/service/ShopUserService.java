@@ -1,7 +1,8 @@
 package com.uniyaz.eticaret.service;
 
-import com.uniyaz.eticaret.repo.ShopUserRepo;
+import com.uniyaz.eticaret.converter.ShopUserConverter;
 import com.uniyaz.eticaret.entity.ShopUser;
+import com.uniyaz.eticaret.repo.ShopUserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,13 +15,13 @@ public class ShopUserService {
     @Autowired
     ShopUserRepo shopUserRepo;
 
-    public List<ShopUser> findAllShopUserById(Long id) {
-        List<ShopUser> allShopUser = shopUserRepo.findAllShopUserById(id);
+    public List<ShopUserConverter> findAllShopUserById(Long id) {
+        List<ShopUserConverter> allShopUser = shopUserRepo.findAllShopUserById(id);
 
         return allShopUser;
     }
 
-    public void saveShopProduct(ShopUser shopUser){
+    public void saveShopProduct(ShopUser shopUser) {
 
 
         shopUserRepo.save(shopUser);
@@ -28,7 +29,7 @@ public class ShopUserService {
     }
 
 
-    public boolean deleteShopProduct(Long shopUserId){
+    public boolean deleteShopProduct(Long shopUserId) {
         shopUserRepo.deleteById(shopUserId);
 
         Optional<ShopUser> byShopUserId = findByShopUserId(shopUserId);
@@ -39,16 +40,14 @@ public class ShopUserService {
 
     }
 
-    public Optional<ShopUser> findByShopUserId(Long id){
+    public Optional<ShopUser> findByShopUserId(Long id) {
         Optional<ShopUser> shopUserDaoById = shopUserRepo.findById(id);
         return shopUserDaoById;
     }
 
-    public void updateAmountByShopUserId(ShopUser shopUser){
-        ShopUser savedShopUser=new ShopUser();
-        savedShopUser.setShopUserId(shopUser.getId());
-        savedShopUser.setShopAmount(shopUser.getShopAmount());
-        shopUserRepo.save(savedShopUser);
+    public void updateAmountByShopUserId(ShopUser shopUser) {
+
+        shopUserRepo.updateAmountByShopUserId(shopUser.getShopAmount(), shopUser.getId());
 
     }
 

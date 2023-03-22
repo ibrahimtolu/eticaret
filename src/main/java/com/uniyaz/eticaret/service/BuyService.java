@@ -1,7 +1,7 @@
 package com.uniyaz.eticaret.service;
 
+import com.uniyaz.eticaret.entity.Buy;
 import com.uniyaz.eticaret.repo.BuyRepo;
-import com.uniyaz.eticaret.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,11 +17,8 @@ public class BuyService {
 
     }
 
-    public Buy saveBuyList(ShopUser shopUser){
+    public Buy saveBuyList(Buy buy){
 
-        Buy buy=new Buy();
-        buy.setShopUser(shopUser);
-        buy.setBuyID(new Long(i));
         Buy savedBuy = buyRepo.save(buy);
         return savedBuy;
     }

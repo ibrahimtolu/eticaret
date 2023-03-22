@@ -1,11 +1,8 @@
 package com.uniyaz.eticaret.controller;
 
 import com.uniyaz.eticaret.converter.CommentConvertor;
-import com.uniyaz.eticaret.converter.UserConverter;
 import com.uniyaz.eticaret.entity.Comment;
-import com.uniyaz.eticaret.entity.User;
 import com.uniyaz.eticaret.service.CommentService;
-import com.uniyaz.eticaret.service.LoginControlService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +13,7 @@ import java.util.Optional;
 
 
 @RestController
-@RequestMapping(path = "/comment")
+@RequestMapping(path = "/auth/comment")
 @CrossOrigin(origins = "*")
 public class CommentController {
 
@@ -27,7 +24,6 @@ public class CommentController {
     @PostMapping(path = "/save")
     ResponseEntity saveComment(@RequestBody Comment comment){
         boolean status = commentService.saveComment(comment);
-        System.out.printf("adasd", comment);
 
         if(status)
             return new ResponseEntity(status,HttpStatus.ACCEPTED);
